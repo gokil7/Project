@@ -1,10 +1,7 @@
-import copy
 import pyvista as pv
 import numpy as np
 import open3d as o3d
-
 import matplotlib.pyplot as plt
-#from polylidar import extractPlanesAndPolygons, extractPolygons, Delaunator
 
 
 if __name__ == "__main__":
@@ -12,9 +9,9 @@ if __name__ == "__main__":
     pcd = o3d.io.read_point_cloud("gok.ply")
     #print(pcd)
     #print(np.asarray(pcd.points))
-    #o3d.visualization.draw_geometries([pcd])
+    o3d.visualization.draw_geometries([pcd])
 
-    #print("Downsample the point cloud with a voxel of 0.05")
+    print("Downsample the point cloud with a voxel of 0.05")
     downpcd = pcd.voxel_down_sample( voxel_size = 0.05)
     o3d.visualization.Visualizer.create_window(downpcd)
     o3d.visualization.draw_geometries([downpcd])
@@ -29,17 +26,3 @@ if __name__ == "__main__":
     print("Print the normal vectors of the first 10 points")
     print(np.asarray(downpcd.normals)[:10, :])
     print("")
-
-
-    xyz = np.asarray(pcd.points)
-    print('xyz')
-    print(xyz)
-    mesh = pv.StructuredGrid()
-    # Set the coordinates from the numpy array
-    mesh.points = xyz
-    # set the dimensions
-    mesh.dimensions = [29, 32, 500]
-    print(mesh)
-    # and then inspect it!
-    #mesh.plot(show_edges=True, show_grid=True, cpos="xy")
-    #mesh.save('gok.vtk')
