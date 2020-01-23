@@ -13,7 +13,6 @@ if __name__ == "__main__":
 
     print("Downsample the point cloud with a voxel of 0.05")
     downpcd = pcd.voxel_down_sample( voxel_size = 0.05)
-    o3d.visualization.Visualizer.create_window(downpcd)
     o3d.visualization.draw_geometries([downpcd])
 
 
